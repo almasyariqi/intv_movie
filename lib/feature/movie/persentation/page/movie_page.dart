@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intv_movie/core/utils/size_config.dart';
 import 'package:intv_movie/feature/movie/persentation/bloc/movie_bloc.dart';
 import 'package:intv_movie/feature/movie/persentation/bloc/movie_event.dart';
 import 'package:intv_movie/feature/movie/persentation/bloc/movie_state.dart';
@@ -9,7 +8,6 @@ import 'package:intv_movie/injection_container.dart';
 class MoviePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("INTV MOVIES"),
