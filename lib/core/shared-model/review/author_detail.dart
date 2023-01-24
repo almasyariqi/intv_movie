@@ -6,16 +6,16 @@ class AuthorDetail {
     required this.rating
   });
 
-  final String name;
-  final String username;
-  final String avatarPath;
-  final double rating;
+  final String? name;
+  final String? username;
+  final String? avatarPath;
+  final double? rating;
 
   factory AuthorDetail.fromJson(Map<String, dynamic> json) => AuthorDetail(
     name: json["name"],
     username: json["username"],
-    avatarPath: json["avatar_path"] ?? "",
-    rating: json["rating"].toDouble()
+    avatarPath: json["avatar_path"],
+    rating: json["rating"]?.toDouble()
   );
   
   Map<String, dynamic> toJson() => {

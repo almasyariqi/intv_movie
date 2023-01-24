@@ -5,9 +5,9 @@ class SpokenLanguage {
     required this.name
   });
 
-  final String englishName;
-  final String languageCode;
-  final String name;
+  final String? englishName;
+  final String? languageCode;
+  final String? name;
 
   factory SpokenLanguage.fromJson(Map<String, dynamic> json) => SpokenLanguage(
     englishName: json["english_name"],

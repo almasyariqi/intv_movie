@@ -30,35 +30,35 @@ class MovieDetailResponse {
     required this.voteCount
   });
 
-  final bool adult;
-  final String backdropPath;
-  final double budget;
-  final List<Genre> genres;
-  final String homepage;
-  final int id;
-  final String imdbId;
-  final String originalTitle;
-  final String overview;
-  final double popularity;
-  final String posterPath;
-  final List<ProductionCompany> productionCompanies;
-  final List<ProductionCountry> productionCountries;
-  final String releaseDate;
-  final double revenue;
-  final int runtime;
-  final List<SpokenLanguage> spokenLanguages;
-  final String status;
-  final String tagline;
-  final String title;
-  final bool video;
-  final double voteAverage;
-  final int voteCount;
+  final bool? adult;
+  final String? backdropPath;
+  final double? budget;
+  final List<Genre>? genres;
+  final String? homepage;
+  final int? id;
+  final String? imdbId;
+  final String? originalTitle;
+  final String? overview;
+  final double? popularity;
+  final String? posterPath;
+  final List<ProductionCompany>? productionCompanies;
+  final List<ProductionCountry>? productionCountries;
+  final String? releaseDate;
+  final double? revenue;
+  final int? runtime;
+  final List<SpokenLanguage>? spokenLanguages;
+  final String? status;
+  final String? tagline;
+  final String? title;
+  final bool? video;
+  final double? voteAverage;
+  final int? voteCount;
 
   factory MovieDetailResponse.fromJson(Map<String, dynamic> json) => MovieDetailResponse(
     adult: json["adult"],
     backdropPath: json["backdrop_path"],
     budget: json["budget"],
-    genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
+    genres: json["genres"] != null ? List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))) : [],
     homepage: json["homepage"],
     id: json["id"],
     imdbId: json["imdb_id"],
@@ -66,12 +66,12 @@ class MovieDetailResponse {
     overview: json["overview"],
     popularity: json["popularity"],
     posterPath: json["poster_path"],
-    productionCompanies: List<ProductionCompany>.from(json["production_companies"].map((x) => ProductionCompany.fromJson(x))),
-    productionCountries: List<ProductionCountry>.from(json["production_countries"].map((x) => ProductionCountry.fromJson(x))),
+    productionCompanies: json["production_companies"] != null ? List<ProductionCompany>.from(json["production_companies"].map((x) => ProductionCompany.fromJson(x))) : [],
+    productionCountries: json["production_countries"] != null ? List<ProductionCountry>.from(json["production_countries"].map((x) => ProductionCountry.fromJson(x))) : [],
     releaseDate: json["release_date"],
-    revenue: json["revenue"].toDouble(),
+    revenue: json["revenue"]?.toDouble(),
     runtime: json["runtime"],
-    spokenLanguages: List<SpokenLanguage>.from(json["spoken_languages"].map((x) => SpokenLanguage.fromJson(x))),
+    spokenLanguages: json["spoken_languages"] != null ? List<SpokenLanguage>.from(json["spoken_languages"].map((x) => SpokenLanguage.fromJson(x))) : [],
     status: json["status"],
     tagline: json["tagline"],
     title: json["title"],
@@ -84,7 +84,7 @@ class MovieDetailResponse {
     "adult": adult,
     "backdrop_path": backdropPath,
     "budget": budget,
-    "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
+    "genres": genres != null ? List<dynamic>.from(genres!.map((x) => x.toJson())) : [],
     "homepage": homepage,
     "id": id,
     "imdb_id": imdbId,
@@ -92,12 +92,12 @@ class MovieDetailResponse {
     "overview": overview,
     "popularity": popularity,
     "poster_path": posterPath,
-    "production_companies": List<dynamic>.from(productionCompanies.map((x) => x.toJson())),
-    "production_countries": List<dynamic>.from(productionCountries.map((x) => x.toJson())),
+    "production_companies": productionCompanies != null ? List<dynamic>.from(productionCompanies!.map((x) => x.toJson())) : [],
+    "production_countries": productionCountries != null ? List<dynamic>.from(productionCountries!.map((x) => x.toJson())) : [],
     "release_date": releaseDate,
     "revenue": revenue,
     "runtime": runtime,
-    "spoken_languages": List<dynamic>.from(spokenLanguages.map((x) => x.toJson())),
+    "spoken_languages": spokenLanguages != null ? List<dynamic>.from(spokenLanguages!.map((x) => x.toJson())) : [],
     "status": status,
     "tagline": tagline,
     "title": title,

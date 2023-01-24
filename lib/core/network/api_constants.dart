@@ -1,6 +1,7 @@
 class ApiConstants {
   static String baseUrl = "https://api.themoviedb.org/3";
   static String apiKey = "27ab468e06ed6d4a86499e1ef9b3ef13";
+  static String imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   static String movie = "/movie";
   static String tv = "/tv";

@@ -1,0 +1,3 @@
+enum TvType {
+  onTheAir, popular
+}

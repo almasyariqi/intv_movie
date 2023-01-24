@@ -14,18 +14,18 @@ class Episode {
     required this.voteCount
   });
 
-  final String airDate;
-  final int episodeNumber;
-  final int id;
-  final String name;
-  final String overview;
-  final String productionCode;
-  final int runtime;
-  final int seasonNumber;
-  final double showId;
-  final int stillPath;
-  final double voteAverage;
-  final int voteCount;
+  final String? airDate;
+  final int? episodeNumber;
+  final int? id;
+  final String? name;
+  final String? overview;
+  final String? productionCode;
+  final int? runtime;
+  final int? seasonNumber;
+  final double? showId;
+  final int? stillPath;
+  final double? voteAverage;
+  final int? voteCount;
 
   factory Episode.fromJson(Map<String, dynamic> json) => Episode(
     airDate: json["air_date"],
@@ -36,9 +36,9 @@ class Episode {
     productionCode: json["production_code"],
     runtime: json["runtime"],
     seasonNumber: json["season_number"],
-    showId: json["show_id"].toDouble(),
+    showId: json["show_id"]?.toDouble(),
     stillPath: json["still_path"],
-    voteAverage: json["vote_average"].toDouble(),
+    voteAverage: json["vote_average"]?.toDouble(),
     voteCount: json["vote_count"]
   );
 

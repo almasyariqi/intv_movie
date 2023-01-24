@@ -11,13 +11,13 @@ class Review {
     required this.url
   });
 
-  final String author;
-  final AuthorDetail authorDetails;
-  final String content;
-  final String createdAt;
-  final String id;
-  final String updatedAt;
-  final String url;
+  final String? author;
+  final AuthorDetail? authorDetails;
+  final String? content;
+  final String? createdAt;
+  final String? id;
+  final String? updatedAt;
+  final String? url;
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(
     author: json["author"],
@@ -31,7 +31,7 @@ class Review {
 
   Map<String, dynamic> toJson() => {
     "author": author,
-    "author_details": authorDetails.toJson(),
+    "author_details": authorDetails?.toJson(),
     "content": content,
     "created_at": createdAt,
     "id": id,

@@ -29,12 +29,12 @@ class ApiService {
         url,
         queryParameters: {
           "page": page,
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return MovieResponse.fromJson(json.decode(response.data));
+        return MovieResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }
@@ -51,12 +51,12 @@ class ApiService {
         url,
         queryParameters: {
           "page": page,
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return MovieResponse.fromJson(json.decode(response.data));
+        return MovieResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }
@@ -73,12 +73,12 @@ class ApiService {
         url,
         queryParameters: {
           "page": page,
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return MovieResponse.fromJson(json.decode(response.data));
+        return MovieResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }
@@ -94,12 +94,12 @@ class ApiService {
       final response = await _dio!.get(
         url,
         queryParameters: {
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return MovieDetailResponse.fromJson(json.decode(response.data));
+        return MovieDetailResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }
@@ -116,12 +116,12 @@ class ApiService {
         url,
         queryParameters: {
           "page": page,
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return ReviewResponse.fromJson(json.decode(response.data));
+        return ReviewResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }
@@ -138,12 +138,12 @@ class ApiService {
         url,
         queryParameters: {
           "page": page,
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return TvResponse.fromJson(json.decode(response.data));
+        return TvResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }
@@ -160,12 +160,12 @@ class ApiService {
         url,
         queryParameters: {
           "page": page,
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return TvResponse.fromJson(json.decode(response.data));
+        return TvResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }
@@ -181,12 +181,12 @@ class ApiService {
       final response = await _dio!.get(
         url,
         queryParameters: {
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return TvDetailResponse.fromJson(json.decode(response.data));
+        return TvDetailResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }
@@ -203,12 +203,12 @@ class ApiService {
         url,
         queryParameters: {
           "page": page,
-          "apiKey": ApiConstants.apiKey
+          "api_key": ApiConstants.apiKey
         }
       );
 
       if(response.statusCode == 200) {
-        return ReviewResponse.fromJson(json.decode(response.data));
+        return ReviewResponse.fromJson(json.decode(json.encode(response.data)));
       } else {
         throw Exception(response.statusCode);
       }

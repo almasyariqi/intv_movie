@@ -9,16 +9,16 @@ class ReviewResponse {
     required this.totalResults
   });
 
-  final int id;
-  final int page;
-  final List<Review> results;
-  final int totalPages;
-  final int totalResults;
+  final int? id;
+  final int? page;
+  final List<Review>? results;
+  final int? totalPages;
+  final int? totalResults;
 
   factory ReviewResponse.fromJson(Map<String, dynamic> json) => ReviewResponse(
     id: json["id"],
     page: json["page"],
-    results: List<Review>.from(json["results"].map((x) => Review.fromJson(x))),
+    results: json["results"] != null ? List<Review>.from(json["results"].map((x) => Review.fromJson(x))) : [],
     totalPages: json["total_pages"],
     totalResults: json["total_results"]
   );
@@ -26,7 +26,7 @@ class ReviewResponse {
   Map<String, dynamic> toJson() => {
     "id": id,
     "page": page,
-    "results": List<dynamic>.from(results.map((x) => x.toJson())),
+    "results": results != null ? List<dynamic>.from(results!.map((x) => x.toJson())) : [],
     "total_pages": totalPages,
     "total_result": totalResults
   };

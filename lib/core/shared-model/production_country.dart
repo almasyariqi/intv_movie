@@ -4,8 +4,8 @@ class ProductionCountry {
     required this.name
   });
 
-  final String countryCode;
-  final String name;
+  final String? countryCode;
+  final String? name;
 
   factory ProductionCountry.fromJson(Map<String, dynamic> json) => ProductionCountry(
     countryCode: json["iso_3166_1"],

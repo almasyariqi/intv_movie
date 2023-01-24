@@ -9,13 +9,13 @@ class TvSeason {
     required this.seasonNumber
   });
 
-  final String airDate;
-  final String episodeCount;
-  final int id;
-  final String name;
-  final String overview;
-  final String posterPath;
-  final int seasonNumber;
+  final String? airDate;
+  final String? episodeCount;
+  final int? id;
+  final String? name;
+  final String? overview;
+  final String? posterPath;
+  final int? seasonNumber;
 
   factory TvSeason.fromJson(Map<String, dynamic> json) => TvSeason(
     airDate: json["air_date"],
