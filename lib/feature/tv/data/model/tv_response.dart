@@ -15,7 +15,7 @@ class TvResponse {
 
   factory TvResponse.fromJson(Map<String, dynamic> json) => TvResponse(
     page: json["page"],
-    results: json["results"] != null ? List<Tv>.from(json["results"].map((x) => TvResponse.fromJson(x))) : [],
+    results: json["results"] != null ? List<Tv>.from(json["results"].map((x) => Tv.fromJson(x))) : [],
     totalPages: json["total_pages"],
     totalResults: json["total_results"],
   );

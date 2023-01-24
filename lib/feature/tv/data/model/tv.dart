@@ -35,7 +35,7 @@ class Tv {
     genreIds: json["genre_ids"] != null ? List<int>.from(json["genre_ids"].map((x) => x)) : [],
     id: json["id"],
     name: json["name"],
-    originCountries: json["origin_country"] ? List<String>.from(json["origin_country"].map((x) => x)) : [],
+    originCountries: json["origin_country"] != null ? List<String>.from(json["origin_country"].map((x) => x)) : [],
     originalLanguage: json["original_language"],
     originalName: json["original_name"],
     overview: json["overview"],

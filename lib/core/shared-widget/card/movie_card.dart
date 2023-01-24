@@ -14,61 +14,80 @@ class SimpleMovieCard extends StatelessWidget {
   final String subtitle;
   final bool showSubTitle;
   final double subTitleTextSize;
+  final bool useBackground;
 
-  const SimpleMovieCard(
-      {Key? key,
-      required this.imageUri,
-      this.width = 30,
-      this.height = 50,
-      this.borderRadius = 10,
-      this.title = "",
-      this.showTitle = true,
-      this.titleTextSize = 25,
-      this.subtitle = "",
-      this.showSubTitle = true,
-      this.subTitleTextSize = 15})
-      : super(key: key);
+  const SimpleMovieCard({
+    Key? key,
+    required this.imageUri,
+    this.width = 30,
+    this.height = double.infinity,
+    this.borderRadius = 10,
+    this.title = "",
+    this.showTitle = true,
+    this.titleTextSize = 20,
+    this.subtitle = "",
+    this.showSubTitle = true,
+    this.subTitleTextSize = 12,
+    this.useBackground = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        alignment: Alignment.bottomLeft,
-        padding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenWidth(20),
-            vertical: getProportionateScreenHeight(20)),
-        width: getProportionateScreenWidth(width),
-        height: getProportionateScreenHeight(height),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(ApiConstants.imageBaseUrl + imageUri),
-              fit: BoxFit.cover),
-          boxShadow: [defaultBoxShadow],
-          borderRadius: BorderRadius.circular(
-            getProportionateScreenWidth(borderRadius),
-          ),
+      alignment: Alignment.bottomLeft,
+      width: getProportionateScreenWidth(width),
+      height: getProportionateScreenHeight(height),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: NetworkImage(ApiConstants.imageBaseUrl + imageUri),
+            fit: BoxFit.cover),
+        boxShadow: [defaultBoxShadow],
+        borderRadius: BorderRadius.circular(
+          getProportionateScreenWidth(borderRadius),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              showTitle ? title : "",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: getProportionateScreenWidth(titleTextSize),
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: getProportionateScreenHeight(10),
-            ),
-            Text(
-              showSubTitle ? subtitle : "",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: getProportionateScreenWidth(subTitleTextSize),
-              ),
-            ),
-          ],
-        ));
+      ),
+      child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(
+              horizontal: getProportionateScreenWidth(10),
+              vertical: getProportionateScreenHeight(15)),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(useBackground ? 0.5 : 0.0),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(getProportionateScreenWidth(borderRadius)),
+              bottomRight: Radius.circular(getProportionateScreenWidth(borderRadius)),
+            )
+          ),
+          child: Wrap(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    showTitle ? title : "",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: getProportionateScreenWidth(titleTextSize),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (showSubTitle)
+                    SizedBox(
+                      height: getProportionateScreenHeight(5),
+                    ),
+                  if (showSubTitle)
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: getProportionateScreenWidth(subTitleTextSize),
+                      ),
+                    ),
+                ],
+              )
+            ],
+          )),
+    );
   }
 }
