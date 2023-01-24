@@ -15,7 +15,9 @@ class MoviePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("INTV MOVIES"),
+        title: Image.asset("assets/images/intvlogo.png",
+        width: getProportionateScreenWidth(100),
+        ),
       ),
       body: BlocProvider(
           create: (_) => sl<MovieBloc>()..add(GetAllMovieLists(page: 1)),
@@ -24,6 +26,7 @@ class MoviePage extends StatelessWidget {
                 child: RefreshIndicator(
               onRefresh: () => _onRefresh(context),
               child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
