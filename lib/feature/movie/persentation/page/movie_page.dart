@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intv_movie/core/shared-page/detail_page.dart';
 import 'package:intv_movie/core/utils/movie_type.dart';
 import 'package:intv_movie/core/utils/size_config.dart';
 import 'package:intv_movie/feature/movie/persentation/bloc/movie_bloc.dart';
@@ -40,6 +41,9 @@ class MoviePage extends StatelessWidget {
                         cardHeight: 300,
                         showTitle: false,
                         showSubtitle: false,
+                        onPressedItem: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage()));
+                        },
                       ),
                       SizedBox(
                         height: getProportionateScreenHeight(20),

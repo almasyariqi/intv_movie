@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:intv_movie/core/router/app_router.dart';
-import 'package:intv_movie/core/router/route_names.dart';
+import 'package:intv_movie/core/shared-page/main_page.dart';
 import 'injection_container.dart' as di;
 
 void main() {
   di.init();
-  runApp(MyApp(
-    appRouter: AppRouter(),
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  final AppRouter appRouter;
   
-  MyApp({Key? key, required this.appRouter}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -27,8 +23,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      onGenerateRoute: widget.appRouter.onGenerateRoute,
-      initialRoute: mainPageRoute,
+      home: MainPage(),
     );
   }
 }
