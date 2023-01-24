@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 abstract class MovieEvent {}
 
 class GetAllMovieLists extends MovieEvent {
@@ -35,4 +37,11 @@ class GetMovieReviews extends MovieEvent {
   final int movieId;
 
   GetMovieReviews({this.page = 1, required this.movieId});
+}
+
+class InitMovieDetailsState extends MovieEvent {
+  final int page;
+  final int movieId;
+
+  InitMovieDetailsState({this.page = 1, required this.movieId});
 }

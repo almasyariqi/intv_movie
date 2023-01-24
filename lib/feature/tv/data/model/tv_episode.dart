@@ -23,7 +23,7 @@ class Episode {
   final int? runtime;
   final int? seasonNumber;
   final double? showId;
-  final int? stillPath;
+  final String? stillPath;
   final double? voteAverage;
   final int? voteCount;
 

@@ -30,3 +30,10 @@ class GetTvReviews extends TvEvent {
 
   GetTvReviews({this.page = 1, required this.tvId});
 }
+
+class InitTvDetailsState extends TvEvent {
+  final int page;
+  final int tvId;
+
+  InitTvDetailsState({this.page = 1, required this.tvId});
+}

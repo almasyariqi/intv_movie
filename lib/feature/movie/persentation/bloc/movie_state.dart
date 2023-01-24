@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:intv_movie/core/network/api_response_state.dart';
 import 'package:intv_movie/core/shared-model/review/review_response.dart';
 import 'package:intv_movie/feature/movie/data/model/movie_detail_response.dart';
 import 'package:intv_movie/feature/movie/data/model/movie_response.dart';
@@ -8,13 +10,15 @@ class MovieState {
   final MovieResponse? popularMovies;
   final MovieDetailResponse? movieDetails;
   final ReviewResponse? movieReviews;
+  final ApiResponseState responseState;
 
   MovieState({
     this.nowPlayingMovies,
     this.upcomingMovies,
     this.popularMovies,
     this.movieDetails,
-    this.movieReviews
+    this.movieReviews,
+    this.responseState = const InitialApiResponseState()
   });
 
   MovieState copyWith({
@@ -23,6 +27,7 @@ class MovieState {
     MovieResponse? popularMovies,
     MovieDetailResponse? movieDetails,
     ReviewResponse? movieReviews,
+    ApiResponseState? responseState
   }) {
 
     return MovieState(
@@ -30,7 +35,8 @@ class MovieState {
       upcomingMovies: upcomingMovies ?? this.upcomingMovies,
       popularMovies: popularMovies ?? this.popularMovies,
       movieDetails: movieDetails ?? this.movieDetails,
-      movieReviews: movieReviews ?? this.movieReviews
+      movieReviews: movieReviews ?? this.movieReviews,
+      responseState: responseState ?? this.responseState
     );
     
   }

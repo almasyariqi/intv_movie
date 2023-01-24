@@ -16,7 +16,7 @@ class TvHorizontalList extends StatelessWidget {
   final bool showTitle;
   final bool showSubtitle;
   final double cardBorderRadius;
-  final Function? onPressedItem;
+  final Function(int) onPressedItem;
 
   TvHorizontalList({
     Key? key,
@@ -30,7 +30,7 @@ class TvHorizontalList extends StatelessWidget {
     this.showTitle = true,
     this.showSubtitle = true,
     this.cardBorderRadius = 10,
-    this.onPressedItem,
+    required this.onPressedItem,
   }) : super(key: key);
 
   @override
@@ -52,7 +52,11 @@ class TvHorizontalList extends StatelessWidget {
                           width: getProportionateScreenWidth(15),
                         ),
                         InkWell(
-                          onTap: onPressedItem as void Function()?,
+                          onTap: () {
+                            if(tv?[index].id != null) {
+                              onPressedItem(tv![index].id!);
+                            }
+                          },
                           child: SimpleMovieCard(
                             imageUri: _tvImageUri(tv, index),
                             width: cardWidth,

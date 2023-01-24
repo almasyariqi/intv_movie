@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intv_movie/core/shared-page/detail_page.dart';
+import 'package:intv_movie/core/network/api_response_state.dart';
 import 'package:intv_movie/core/utils/movie_type.dart';
 import 'package:intv_movie/core/utils/size_config.dart';
 import 'package:intv_movie/feature/movie/persentation/bloc/movie_bloc.dart';
 import 'package:intv_movie/feature/movie/persentation/bloc/movie_event.dart';
 import 'package:intv_movie/feature/movie/persentation/bloc/movie_state.dart';
+import 'package:intv_movie/feature/movie/persentation/page/movie_detail_page.dart';
 import 'package:intv_movie/feature/movie/persentation/widget/movie_horizontal_list.dart';
 import 'package:intv_movie/injection_container.dart';
 
@@ -20,67 +21,85 @@ class MoviePage extends StatelessWidget {
           create: (_) => sl<MovieBloc>()..add(GetAllMovieLists(page: 1)),
           child: BlocBuilder<MovieBloc, MovieState>(builder: (context, state) {
             return Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: getProportionateScreenHeight(15),
-                      ),
-                      _titleText("Now Playing"),
-                      SizedBox(
-                        height: getProportionateScreenHeight(15),
-                      ),
-                      MovieHorizontalList(
-                        movies: state.nowPlayingMovies?.results,
-                        isEmpty:
-                            state.nowPlayingMovies?.results?.isEmpty ?? true,
-                        isLoading: false,
-                        movieType: MovieType.nowPlaying,
-                        cardWidth: 200,
-                        cardHeight: 300,
-                        showTitle: false,
-                        showSubtitle: false,
-                        onPressedItem: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage()));
-                        },
-                      ),
-                      SizedBox(
-                        height: getProportionateScreenHeight(20),
-                      ),
-                      _titleText("Upcoming Movies"),
-                      SizedBox(
-                        height: getProportionateScreenHeight(15),
-                      ),
-                      MovieHorizontalList(
-                        movies: state.upcomingMovies?.results,
-                        isEmpty:
-                            state.upcomingMovies?.results?.isEmpty ?? true,
-                        isLoading: false,
-                        movieType: MovieType.upcoming,
-                        cardWidth: 300,
-                        useTitleBackground: true,
-                      ),
-                      SizedBox(
-                        height: getProportionateScreenHeight(20),
-                      ),
-                      _titleText("Popular Movies"),
-                      SizedBox(
-                        height: getProportionateScreenHeight(15),
-                      ),
-                      MovieHorizontalList(
-                        movies: state.popularMovies?.results,
-                        isEmpty:
-                            state.popularMovies?.results?.isEmpty ?? true,
-                        isLoading: false,
-                        movieType: MovieType.popular,
-                        cardWidth: 200,
-                        cardHeight: 300,
-                        useTitleBackground: true,
-                      ),
-                    ],
-                  ),
-                ));
+                child: RefreshIndicator(
+              onRefresh: () => _onRefresh(context),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: getProportionateScreenHeight(15),
+                    ),
+                    _titleText("Now Playing"),
+                    SizedBox(
+                      height: getProportionateScreenHeight(15),
+                    ),
+                    MovieHorizontalList(
+                      movies: state.nowPlayingMovies?.results,
+                      isEmpty: state.nowPlayingMovies?.results?.isEmpty ?? true,
+                      isLoading: state.responseState is ResLoading,
+                      movieType: MovieType.nowPlaying,
+                      cardWidth: 200,
+                      cardHeight: 300,
+                      showTitle: false,
+                      showSubtitle: false,
+                      onPressedItem: (movieId) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MovieDetailPage(movieId: movieId)));
+                      },
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(20),
+                    ),
+                    _titleText("Upcoming Movies"),
+                    SizedBox(
+                      height: getProportionateScreenHeight(15),
+                    ),
+                    MovieHorizontalList(
+                      movies: state.upcomingMovies?.results,
+                      isEmpty: state.upcomingMovies?.results?.isEmpty ?? true,
+                      isLoading: state.responseState is ResLoading,
+                      movieType: MovieType.upcoming,
+                      cardWidth: 300,
+                      useTitleBackground: true,
+                      onPressedItem: (movieId) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MovieDetailPage(movieId: movieId)));
+                      },
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(20),
+                    ),
+                    _titleText("Popular Movies"),
+                    SizedBox(
+                      height: getProportionateScreenHeight(15),
+                    ),
+                    MovieHorizontalList(
+                      movies: state.popularMovies?.results,
+                      isEmpty: state.popularMovies?.results?.isEmpty ?? true,
+                      isLoading: state.responseState is ResLoading,
+                      movieType: MovieType.popular,
+                      cardWidth: 200,
+                      cardHeight: 300,
+                      useTitleBackground: true,
+                      onPressedItem: (movieId) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MovieDetailPage(movieId: movieId)));
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ));
           })),
     );
   }
@@ -99,5 +118,9 @@ class MoviePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _onRefresh(BuildContext context) async {
+    context.read<MovieBloc>().add(GetAllMovieLists(page: 1));
   }
 }

@@ -38,9 +38,11 @@ class SimpleMovieCard extends StatelessWidget {
       width: getProportionateScreenWidth(width),
       height: getProportionateScreenHeight(height),
       decoration: BoxDecoration(
-        image: DecorationImage(
-            image: NetworkImage(ApiConstants.imageBaseUrl + imageUri),
-            fit: BoxFit.cover),
+        color: Colors.blueGrey,
+        image: imageUri.isNotEmpty ? DecorationImage(
+          image: NetworkImage(ApiConstants.imageBaseUrl + imageUri),
+          fit: BoxFit.cover,
+        ) : null,
         boxShadow: [defaultBoxShadow],
         borderRadius: BorderRadius.circular(
           getProportionateScreenWidth(borderRadius),
@@ -52,12 +54,13 @@ class SimpleMovieCard extends StatelessWidget {
               horizontal: getProportionateScreenWidth(10),
               vertical: getProportionateScreenHeight(15)),
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(useBackground ? 0.5 : 0.0),
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(getProportionateScreenWidth(borderRadius)),
-              bottomRight: Radius.circular(getProportionateScreenWidth(borderRadius)),
-            )
-          ),
+              color: Colors.black.withOpacity(useBackground ? 0.5 : 0.0),
+              borderRadius: BorderRadius.only(
+                bottomLeft:
+                    Radius.circular(getProportionateScreenWidth(borderRadius)),
+                bottomRight:
+                    Radius.circular(getProportionateScreenWidth(borderRadius)),
+              )),
           child: Wrap(
             children: [
               Column(

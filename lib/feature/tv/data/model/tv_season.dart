@@ -10,7 +10,7 @@ class TvSeason {
   });
 
   final String? airDate;
-  final String? episodeCount;
+  final int? episodeCount;
   final int? id;
   final String? name;
   final String? overview;
