@@ -58,10 +58,10 @@ class TvDetailPage extends StatelessWidget {
                       ),
                       SimpleBorderedTextContainer(
                           text:
-                              "Total Season: ${state.tvDetails?.numberOfSeasons}"),
+                              "${state.tvDetails?.numberOfSeasons} Season(s)"),
                       SimpleBorderedTextContainer(
                           text:
-                              "Total Episode: ${state.tvDetails?.numberOfEpisode}"),
+                              "${state.tvDetails?.numberOfEpisode} Episode(s)"),
                       SimpleBorderedTextContainer(
                         text:
                             "Reviews (${state.tvReviews?.results?.length ?? 0})",
